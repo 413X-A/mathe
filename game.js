@@ -29,7 +29,7 @@ function startGame() {
         progressBar.style.width = `${progressPercentage}%`;
 
         // Timer-Anzeige aktualisieren
-        timerElement.innerText = `Verbleibende Zeit: ${timer} Sekunden`;
+        timerElement.innerText = `${timer}`;
 
         if (timer <= 0) {
             endGame();

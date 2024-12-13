@@ -99,10 +99,12 @@ function endGame() {
     if (score > previousScore) {
         scores[currentUser] = score;
         localStorage.setItem("scores", JSON.stringify(scores));
-        endMessageElement.innerText = `Spiel vorbei! Dein neuer Highscore: ${score} Punkte!`;
+        endMessageElement.innerText = `Spiel vorbei!\nDein neuer Highscore: ${score}!`;
     } else {
-        endMessageElement.innerText = `Spiel vorbei! Dein Score: ${score}. Dein Highscore bleibt bei ${previousScore} Punkten.`;
+        endMessageElement.innerText = `Spiel vorbei!\nDein Score: ${score}. Dein Highscore: ${previousScore}!`;
     }
+    
+    window.location.href = "main.html";
 }
 
 function getRandomNumber(min, max) {

@@ -1,6 +1,6 @@
 let score = 0;
-let timer = 60; // Gesamte Spielzeit
-let countdown = 3; // Countdown auf 3 Sekunden reduziert
+let timer = 60; // Gesamte Spielzeit in Sekunden
+let countdown = 3; // Countdown vor Spielstart in Sekunden
 let interval;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function startGame() {
     const progressBar = document.getElementById("progress-bar");
+    const timerElement = document.getElementById("timer");
     let elapsed = 0;
 
     interval = setInterval(() => {
@@ -24,8 +25,11 @@ function startGame() {
         timer--;
 
         // Fortschrittsleiste aktualisieren
-        const progressPercentage = (elapsed / 60) * 100; // 60 = gesamte Spielzeit
+        const progressPercentage = (elapsed / 60) * 100; // 60 Sekunden = gesamte Spielzeit
         progressBar.style.width = `${progressPercentage}%`;
+
+        // Timer-Anzeige aktualisieren
+        timerElement.innerText = `Verbleibende Zeit: ${timer} Sekunden`;
 
         if (timer <= 0) {
             endGame();
@@ -36,8 +40,7 @@ function startGame() {
 }
 
 function nextQuestion() {
-    // Dynamischer Bereich für Zahlen, abhängig vom Score
-    const baseRange = 10 + Math.floor(score / 5) * 5; // Der Basisbereich wird schrittweise erhöht
+    const baseRange = 10 + Math.floor(score / 5) * 5; // Dynamischer Bereich abhängig vom Score
     const num1 = getRandomNumber(baseRange - 10, baseRange + 10);
     const num2 = getRandomNumber(baseRange - 10, baseRange + 10);
 
@@ -52,11 +55,14 @@ function nextQuestion() {
 
     shuffleArray(answers);
 
-    document.getElementById("timer").innerText = `${num1} ${isAddition ? "+" : "-"} ${num2} = ?`;
-
-    // Antwortmöglichkeiten in zwei Reihen anzeigen
     const answersDiv = document.getElementById("answers");
     answersDiv.innerHTML = "";
+
+    // Frage anzeigen
+    const questionText = `${num1} ${isAddition ? "+" : "-"} ${num2} = ?`;
+    document.getElementById("timer").innerText = questionText;
+
+    // Antwortmöglichkeiten anzeigen
     for (let i = 0; i < answers.length; i++) {
         const button = document.createElement("button");
         button.innerText = answers[i];

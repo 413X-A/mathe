@@ -68,10 +68,10 @@ function nextQuestion() {
 
             if (answers[i] === correctAnswer) {
                 score++;
-                result.innerText = `✅ ${num1} ${isAddition ? "+" : "-"} ${num2} = ${answers[i]} (Richtig)`;
+                result.innerText = `✓ ${num1} ${isAddition ? "+" : "-"} ${num2} = ${answers[i]}!`;
                 nextQuestion();
             } else {
-                result.innerText = `❌ ${num1} ${isAddition ? "+" : "-"} ${num2} = ${answers[i]} (Falsch)`;
+                result.innerText = `✖ ${num1} ${isAddition ? "+" : "-"} ${num2} = ${answers[i]}!`;
                 endGame();
             }
 

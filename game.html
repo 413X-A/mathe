@@ -11,11 +11,20 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
+            width: 100%;
             max-width: 400px;
-            margin: 50px auto;
+            margin: 0 auto;
             padding: 20px;
+            background-color: #eaeaea; /* Leicht grau */
+            border-radius: 10px;
+            border: 2px solid #cccccc; /* Rahmen um das Spielfeld */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Schatten nach außen */
         }
         #progress-container {
             width: 100%;
@@ -31,7 +40,7 @@
             transition: width 1s linear;
         }
         .answers button {
-            font-size: 15px
+            font-size: 15px;
             display: inline-block;
             margin: 10px 5px;
             padding: 10px 20px;
@@ -44,6 +53,9 @@
         }
         .answers button:hover {
             background-color: #0056b3;
+        }
+        h1, h2 {
+            margin: 10px 0;
         }
     </style>
 </head>

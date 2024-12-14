@@ -1,29 +1,34 @@
-function login() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
 
-    if (!username || !password) {
-        alert("Bitte füllen Sie alle Felder aus!");
-        return;
-    }
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Verhindert das Neuladen der Seite
 
-    const users = JSON.parse(localStorage.getItem("users")) || {};
-    
-    if (users[username]) {
-        // Benutzer existiert
-        if (users[username] === password) {
-            alert("Anmeldung erfolgreich!");
-            localStorage.setItem("currentUser", username);
-            window.location.href = "main.html";
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (username && password) {
+            const users = JSON.parse(localStorage.getItem("users")) || {};
+
+            if (users[username]) {
+                // Benutzer existiert, Passwort überprüfen
+                if (users[username] === password) {
+                    alert("Erfolgreich angemeldet!");
+                    localStorage.setItem("currentUser", username);
+                    window.location.href = "main.html";
+                } else {
+                    alert("Falsches Passwort!");
+                }
+            } else {
+                // Neuer Benutzer erstellen
+                users[username] = password;
+                localStorage.setItem("users", JSON.stringify(users));
+                alert("Benutzer erstellt und angemeldet!");
+                localStorage.setItem("currentUser", username);
+                window.location.href = "main.html";
+            }
         } else {
-            alert("Falsches Passwort!");
+            alert("Bitte Benutzername und Passwort eingeben!");
         }
-    } else {
-        // Neuer Benutzer
-        users[username] = password;
-        localStorage.setItem("users", JSON.stringify(users));
-        localStorage.setItem("currentUser", username);
-        alert("Neuer Benutzer angelegt!");
-        window.location.href = "hauptseite.html";
-    }
-}
+    });
+});

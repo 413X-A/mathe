@@ -1,6 +1,6 @@
 let score = 0;
 let timer = 60; // Spielzeit in Sekunden
-let countdown = 5; // Countdown vor Spielstart
+let countdown = 3; // Countdown vor Spielstart
 let interval;
 const history = [];
 

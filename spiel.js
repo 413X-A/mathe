@@ -61,16 +61,19 @@ function nextQuestion() {
 
 function endGame() {
     clearInterval(interval);
-    alert(`Spiel vorbei! Dein Score: ${score}`);
-    saveScore();
-    window.location.href = "main.html";
-}
-
-function saveScore() {
     const currentUser = localStorage.getItem("currentUser");
     const scores = JSON.parse(localStorage.getItem("scores")) || {};
-    scores[currentUser] = Math.max(score, scores[currentUser] || 0);
-    localStorage.setItem("scores", JSON.stringify(scores));
+    const previousScore = scores[currentUser] || 0;
+
+    if (score > previousScore) {
+        scores[currentUser] = score;
+        localStorage.setItem("scores", JSON.stringify(scores));
+        alert(`Spiel vorbei! Dein neuer Highscore: ${score} Punkte!`);
+    } else {
+        alert(`Spiel vorbei! Dein Score: ${score}. Dein Highscore bleibt bei ${previousScore} Punkten.`);
+    }
+
+    window.location.href = "main.html";
 }
 
 function getRandomNumber(min, max) {

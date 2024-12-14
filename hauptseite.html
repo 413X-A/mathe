@@ -9,33 +9,41 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 400px;
-            margin: 50px auto;
             padding: 20px;
         }
+
+        .scoreboard {
+            margin: 50px auto;
+            width: 300px;
+        }
+
+        .scoreboard div {
+            font-size: 18px;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
         button {
             padding: 10px 20px;
+            font-size: 16px;
             background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Willkommen, <span id="currentUser"></span>!</h1>
-        <h2>Top Spieler: <span id="topUser"></span> (<span id="topScore">0</span> Punkte)</h2>
-        <button onclick="startGame()">Spiel starten</button>
-    </div>
+    <h1>Willkommen, <span id="currentUser"></span>!</h1>
+    <div class="scoreboard" id="scoreboard"></div>
+    <button onclick="startGame()">Spiel starten</button>
+
     <script src="hauptseite.js"></script>
 </body>
 </html>

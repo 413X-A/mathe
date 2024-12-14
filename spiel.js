@@ -2,6 +2,7 @@ let score = 0;
         let timer = 60;
         let countdown = 5;
         let interval;
+        const history = [];
 
         document.addEventListener("DOMContentLoaded", () => {
             const timerElement = document.getElementById("timer");
@@ -52,14 +53,30 @@ let score = 0;
                 const button = document.createElement("button");
                 button.innerText = answer;
                 button.onclick = () => {
-                    if (answer === correctAnswer) {
+                    const isCorrect = answer === correctAnswer;
+                    if (isCorrect) {
                         score++;
+                        history.push({ question: `${num1} ${isAddition ? "+" : "-"} ${num2}`, answer, isCorrect });
+                        updateHistory();
                         nextQuestion();
                     } else {
+                        history.push({ question: `${num1} ${isAddition ? "+" : "-"} ${num2}`, answer, isCorrect });
+                        updateHistory();
                         endGame();
                     }
                 };
                 answersDiv.appendChild(button);
+            });
+        }
+
+        function updateHistory() {
+            const historyDiv = document.getElementById("history");
+            historyDiv.innerHTML = "";
+            history.forEach(entry => {
+                const p = document.createElement("p");
+                p.className = entry.isCorrect ? "correct" : "incorrect";
+                p.innerText = `${entry.question} = ${entry.answer} (${entry.isCorrect ? "Richtig" : "Falsch"})`;
+                historyDiv.appendChild(p);
             });
         }
 

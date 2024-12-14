@@ -11,7 +11,7 @@
             font-family: Arial, sans-serif;
             width: 400px;
             margin: auto;
-            border: 2px solid black;
+            border: 2px solid black; /* Außenkante umschließt die gesamte Seite */
             box-shadow: 0 0 10px gray;
             height: 100vh;
             overflow-y: auto; /* Scrollbar hinzufügen */
@@ -23,6 +23,12 @@
         }
         .container {
             padding: 10px;
+            width: 100%;
+            height: 100%; /* Sicherstellen, dass der Container die gesamte Höhe nutzt */
+            min-height: 100vh; /* Mindesthöhe der Seite */
+            max-height: 100vh; /* Begrenzung der Höhe auf die Sichtbarkeit des Viewports */
+            overflow-y: auto; /* Scrollbar hinzufügen, wenn erforderlich */
+            position: relative;
         }
         .progress-bar {
             width: 100%;

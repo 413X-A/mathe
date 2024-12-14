@@ -17,9 +17,12 @@
             margin: 50px auto;
             padding: 20px;
         }
+        .answers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
         .answers button {
-            display: block;
-            margin: 10px auto;
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
@@ -30,6 +33,20 @@
         .answers button:hover {
             background-color: #0056b3;
         }
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #28a745;
+            width: 100%;
+            transition: width 1s linear;
+        }
     </style>
 </head>
 <body>
@@ -38,9 +55,11 @@
         <div class="progress-bar">
             <div class="progress-bar-fill" id="progress"></div>
         </div>
-        <h2 id="timer">Los geht's.</h2>
+        <h2 id="timer">Spiel startet in 5 Sekunden...</h2>
         <div class="answers" id="answers"></div>
     </div>
-    <script src="spiel.js"></script>
+    <script>
+        
+    </script>
 </body>
 </html>

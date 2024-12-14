@@ -24,6 +24,6 @@ function login() {
         localStorage.setItem("users", JSON.stringify(users));
         localStorage.setItem("currentUser", username);
         alert("Neuer Benutzer angelegt!");
-        window.location.href = "main.html";
+        window.location.href = "hauptseite.html";
     }
 }

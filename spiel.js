@@ -63,7 +63,7 @@ function endGame() {
     clearInterval(interval);
     alert(`Spiel vorbei! Dein Score: ${score}`);
     saveScore();
-    window.location.href = "main.html";
+    window.location.href = "hauptseite.html";
 }
 
 function saveScore() {

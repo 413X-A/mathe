@@ -3,81 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title>Spiel Webseiten</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            width: 400px;
+            margin: auto;
+            border: 2px solid black;
+            box-shadow: 0 0 10px gray;
+            height: 100vh;
+            overflow: hidden;
         }
-
-        #leaderboard {
-            margin: 20px auto;
-            border-collapse: collapse;
-            width: 50%;
+        header {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 10px 0;
         }
-
-        #leaderboard th, #leaderboard td {
-            border: 1px solid #ddd;
+        .container {
             padding: 10px;
             text-align: center;
         }
-
-        #leaderboard th {
-            background-color: #007bff;
-            color: white;
+        .form-field {
+            margin: 10px 0;
+            width: 90%;
         }
-
-        button {
+        .button {
             padding: 10px 20px;
-            margin-top: 20px;
-            font-size: 16px;
-            background-color: #007bff;
+            background-color: black;
             color: white;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
+            font-size: 1em;
         }
-
-        button:hover {
-            background-color: #0056b3;
+        .button:hover {
+            background-color: gray;
         }
     </style>
 </head>
 <body>
-    <h1>Willkommen, <span id="currentUser"></span>!</h1>
-    <h2>Top 3 Spieler</h2>
-    <table id="leaderboard">
-        <thead>
-            <tr>
-                <th>Platz</th>
-                <th>Benutzer</th>
-                <th>Punkte</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td id="topUser1">-</td>
-                <td id="topScore1">-</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td id="topUser2">-</td>
-                <td id="topScore2">-</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td id="topUser3">-</td>
-                <td id="topScore3">-</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <button onclick="startGame()">Spiel starten</button>
-    <button onclick="logout()">Benutzer wechseln</button>
-
-    <script src="index.js"></script>
+<!-- index.html -->
+<div class="container">
+    <header>Anmeldung</header>
+    <input id="username" type="text" class="form-field" placeholder="Benutzername">
+    <input id="password" type="password" class="form-field" placeholder="Passwort">
+    <button id="loginBtn" class="button">Anmelden</button>
+</div>
+<script src="index.js"></script>
 </body>
 </html>

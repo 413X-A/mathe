@@ -20,7 +20,8 @@ let score = 0;
 
             interval = setInterval(() => {
                 timer--;
-                progressBarFill.style.width = `${(timer / 60) * 100}%`;
+                const progressPercentage = ((60 - timer) / 60) * 100;
+                progressBarFill.style.width = `${progressPercentage}%`;
                 if (timer <= 0) {
                     endGame();
                 }

@@ -1,4 +1,3 @@
-// spiel.js
 const mathQuestion = document.getElementById('mathQuestion');
 const answerOptions = document.getElementById('answerOptions');
 const taskHistory = document.getElementById('taskHistory');
@@ -32,18 +31,16 @@ function generateMathTask() {
 
 function checkAnswer(selected, correct) {
     const taskLog = document.createElement('div');
-
-    // Haken oder Kreuz in grauer Farbe basierend auf der Antwort
     const symbol = document.createElement('span');
     symbol.textContent = selected === correct ? '✓' : '✗';
     symbol.style.color = 'gray';
     symbol.style.marginRight = '10px';
-
-    // Frage mit Symbol verbinden
+    
     taskLog.appendChild(symbol);
     taskLog.appendChild(document.createTextNode(mathQuestion.textContent));
 
-    // Antwort überprüfen
+    taskHistory.appendChild(taskLog);  // Task log wird hinzugefügt
+
     if (selected === correct) {
         score++;
         range++;
@@ -52,7 +49,6 @@ function checkAnswer(selected, correct) {
         endGame();
     }
 }
-
 
 function updateProgressBar() {
     progressBarFill.style.width = `${((60 - timeLeft) / 60) * 100}%`;

@@ -69,15 +69,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Spiel</h1>
-        <div class="progress-bar">
-            <div class="progress-bar-fill" id="progress"></div>
-        </div>
-        <h2 id="timer">Los geht's.</h2>
-        <div class="answers" id="answers"></div>
-        <div class="history" id="history"></div>
-        <div class="final-score" id="final-score" style="display: none;"></div>
+    <h1>Spiel</h1>
+    <div class="progress-bar">
+        <div class="progress-bar-fill" id="progress"></div>
     </div>
+    <h2 id="timer">Los geht's.</h2>
+    <div class="answers" id="answers"></div>
+    <div class="history" id="history"></div>
+    <div class="final-score" id="final-score" style="display: none;"></div>
+    <!-- Spiel beenden Button -->
+    <button id="end-game-button" style="display: none;" onclick="endGameRedirect()">Spiel beenden</button>
+</div>
+
         <script src="spiel.js"></script>
 </body>
 </html>

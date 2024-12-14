@@ -16,8 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function startGame() {
+    const progressBarFill = document.getElementById("progress");
+
     interval = setInterval(() => {
         timer--;
+        progressBarFill.style.width = `${(timer / 60) * 100}%`;
         if (timer <= 0) {
             endGame();
         }
@@ -33,7 +36,7 @@ function nextQuestion() {
     const correctAnswer = isAddition ? num1 + num2 : num1 - num2;
 
     const answers = [correctAnswer];
-    while (answers.length < 3) {
+    while (answers.length < 6) {
         const wrongAnswer = getRandomNumber(correctAnswer - 10, correctAnswer + 10);
         if (!answers.includes(wrongAnswer)) answers.push(wrongAnswer);
     }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #leaderboard {
+            margin: 20px auto;
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        #leaderboard td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Willkommen, <span id="currentUser"></span>!</h1>
+    <h2>Top 5 Spieler</h2>
+    <table id="leaderboard">
+        <tbody>
+            <tr>
+                <td id="topUser1"></td>
+                <td id="topScore1"></td>
+            </tr>
+            <tr>
+                <td id="topUser2"></td>
+                <td id="topScore2"></td>
+            </tr>
+            <tr>
+                <td id="topUser3"></td>
+                <td id="topScore3"></td>
+            </tr>
+            <tr>
+                <td id="topUser4"></td>
+                <td id="topScore4"></td>
+            </tr>
+            <tr>
+                <td id="topUser5"></td>
+                <td id="topScore5"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="startGame()">Spiel starten</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

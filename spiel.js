@@ -1,6 +1,6 @@
 let score = 0;
 let timer = 60;
-let countdown = 5;
+let countdown = 3;
 let interval;
 const history = [];
 

@@ -1,47 +1,21 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const currentUser = localStorage.getItem("currentUser");
-    const scores = JSON.parse(localStorage.getItem("scores")) || {};
+// index.js
+const loginBtn = document.getElementById('loginBtn');
 
-    // Wenn kein aktueller Benutzer gefunden wird, zurück zur Login-Seite
-    if (!currentUser) {
-        window.location.href = "index.html";
+loginBtn.addEventListener('click', () => {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (!username || !password) {
+        alert('Bitte füllen Sie alle Felder aus!');
         return;
     }
 
-    // Zeige den aktuellen Benutzer an
-    document.getElementById("currentUser").innerText = currentUser;
+    const users = JSON.parse(localStorage.getItem('users') || '{}');
 
-    // Punktzahlen sortieren und die besten drei Benutzer auswählen
-    const sortedScores = Object.entries(scores)
-        .sort(([, scoreA], [, scoreB]) => scoreB - scoreA) // Sortiere nach Punkten absteigend
-        .slice(0, 3); // Begrenze auf die Top 3
-
-    // Platz 1
-    if (sortedScores[0]) {
-        document.getElementById("topUser1").innerText = sortedScores[0][0];
-        document.getElementById("topScore1").innerText = sortedScores[0][1];
+    if (!users[username]) {
+        users[username] = { password, score: 0 };
+        localStorage.setItem('users', JSON.stringify(users));
     }
 
-    // Platz 2
-    if (sortedScores[1]) {
-        document.getElementById("topUser2").innerText = sortedScores[1][0];
-        document.getElementById("topScore2").innerText = sortedScores[1][1];
-    }
-
-    // Platz 3
-    if (sortedScores[2]) {
-        document.getElementById("topUser3").innerText = sortedScores[2][0];
-        document.getElementById("topScore3").innerText = sortedScores[2][1];
-    }
+    window.location.href = 'hauptseite.html';
 });
-
-// Spiel starten
-function startGame() {
-    window.location.href = "game.html";
-}
-
-// Benutzer wechseln
-function logout() {
-    localStorage.removeItem("currentUser");
-    window.location.href = "index.html";
-}

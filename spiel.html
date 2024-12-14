@@ -4,20 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spiel</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .answers button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .answers button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Mathe-Spiel</h1>
-        <div id="progressBarContainer">
-            <div id="progressBar"></div>
-        </div>
-        <div id="gameArea">
-            <p id="question"></p>
-            <div id="answers"></div>
-        </div>
-        <div id="history"></div>
-        <button id="endGame" style="display:none;">Spiel Beenden</button>
+        <h1>Spiel</h1>
+        <h2 id="timer">Spiel startet in 5 Sekunden...</h2>
+        <div class="answers" id="answers"></div>
     </div>
+    <script src="spiel.js"></script>
 </body>
 </html>

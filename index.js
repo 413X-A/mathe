@@ -14,7 +14,7 @@ function login() {
         if (users[username] === password) {
             alert("Anmeldung erfolgreich!");
             localStorage.setItem("currentUser", username);
-            window.location.href = "main.html";
+            window.location.href = "hauptseite.html";
         } else {
             alert("Falsches Passwort!");
         }
@@ -24,6 +24,6 @@ function login() {
         localStorage.setItem("users", JSON.stringify(users));
         localStorage.setItem("currentUser", username);
         alert("Neuer Benutzer angelegt!");
-        window.location.href = "main.html";
+        window.location.href = "hauptseite.html";
     }
 }

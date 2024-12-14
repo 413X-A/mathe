@@ -3,65 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmelden</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            width: 400px;
-            margin: auto;
-            border: 2px solid black;
-            box-shadow: 0 0 15px gray;
-            height: 100vh;
-            overflow: hidden;
-            border-radius: 10px;
-            background-color: #f2f2f2;
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-            margin-top: 100px;
-        }
-
-        header {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1em;
-        }
-
-        .button {
-            width: 84%;
-            padding: 10px;
-            background-color: black;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        .button:hover {
-            background-color: gray;
-        }
-    </style>
+    <title>Math Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <header>Anmelden</header>
-        <input type="text" id="username" placeholder="Benutzername"><br>
-        <input type="password" id="password" placeholder="Passwort"><br>
-        <button id="loginBtn" class="button">Anmelden</button>
+    <!-- Anmeldeseite (index.html) -->
+    <div id="index" style="display: block;">
+        <h1>Willkommen zum Mathespiel!</h1>
+        <form id="loginForm">
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Anmelden</button>
+        </form>
     </div>
-    <script src="index.js"></script>
+
+    <!-- Hauptseite (hauptseite.html) -->
+    <div id="hauptseite" style="display: none;">
+        <h1>Mathespiel - Hauptseite</h1>
+        <div id="leaderboard">
+            <h2>Leaderboard</h2>
+            <ol id="leaderboardList">
+                <!-- Dynamische Inhalte -->
+            </ol>
+        </div>
+        <button id="startGame">Spiel starten</button>
+    </div>
+
+    <!-- Spielseite (spiel.html) -->
+    <div id="spielseite" style="display: none;">
+        <h1>Mathespiel - Spiel</h1>
+        <div id="progressContainer">
+            <div id="progressBar"></div>
+        </div>
+        <div id="mathTask"></div>
+        <div id="answers">
+            <!-- Antwortmöglichkeiten -->
+        </div>
+        <div id="history">
+            <h3>Aufgabenverlauf:</h3>
+            <ul id="taskHistory">
+                <!-- Historie der Aufgaben -->
+            </ul>
+        </div>
+        <div id="result" style="display: none;"></div>
+        <button id="endGame" style="display: none;">Spiel beenden</button>
+    </div>
 </body>
 </html>

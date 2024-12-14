@@ -18,5 +18,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function startGame() {
-    window.location.href = "game.html";
+    window.location.href = "spiel.html";
 }

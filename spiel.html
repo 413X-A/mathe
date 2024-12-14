@@ -14,7 +14,7 @@
             border: 2px solid black;
             box-shadow: 0 0 10px gray;
             height: 100vh;
-            overflow: hidden;
+            overflow-y: auto; /* Scrollbar hinzufügen */
         }
         header {
             text-align: center;
@@ -49,6 +49,8 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+            overflow-y: auto; /* Zum Scrollen fähig machen */
+            max-height: 60vh; /* Maximale Höhe für Scrollbar */
         }
         .answer {
             flex: 0 0 30%;

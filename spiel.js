@@ -32,10 +32,18 @@ function generateMathTask() {
 
 function checkAnswer(selected, correct) {
     const taskLog = document.createElement('div');
-    taskLog.textContent = `${mathQuestion.textContent} ${selected === correct ? 'Richtig' : 'Falsch'}`;
-    taskLog.style.color = selected === correct ? 'green' : 'red';
-    taskHistory.appendChild(taskLog);
 
+    // Haken oder Kreuz in grauer Farbe basierend auf der Antwort
+    const symbol = document.createElement('span');
+    symbol.textContent = selected === correct ? '✓' : '✗';
+    symbol.style.color = 'gray';
+    symbol.style.marginRight = '10px';
+
+    // Frage mit Symbol verbinden
+    taskLog.appendChild(symbol);
+    taskLog.appendChild(document.createTextNode(mathQuestion.textContent));
+
+    // Antwort überprüfen
     if (selected === correct) {
         score++;
         range++;
@@ -44,6 +52,7 @@ function checkAnswer(selected, correct) {
         endGame();
     }
 }
+
 
 function updateProgressBar() {
     progressBarFill.style.width = `${((60 - timeLeft) / 60) * 100}%`;

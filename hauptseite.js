@@ -1,17 +1,22 @@
-window.onload = function () {
-    const users = JSON.parse(localStorage.getItem("users")) || {};
-    const topPlayers = Object.entries(users)
-        .sort((a, b) => b[1].score - a[1].score)
-        .slice(0, 5);
+document.addEventListener("DOMContentLoaded", () => {
+    const currentUser = localStorage.getItem("currentUser");
+    const scores = JSON.parse(localStorage.getItem("scores")) || {};
 
-    const topPlayersList = document.getElementById("topPlayers");
-    topPlayers.forEach(([username, data]) => {
-        const li = document.createElement("li");
-        li.textContent = `${username}: ${data.score}`;
-        topPlayersList.appendChild(li);
-    });
+    if (!currentUser) {
+        window.location.href = "index.html";
+    }
 
-    document.getElementById("startGame").addEventListener("click", () => {
-        window.location.href = "spiel.html";
-    });
-};
+    document.getElementById("currentUser").innerText = currentUser;
+
+    const topUser = Object.keys(scores).reduce((top, user) => 
+        scores[user] > (scores[top] || 0) ? user : top, "");
+
+    if (topUser) {
+        document.getElementById("topUser").innerText = topUser;
+        document.getElementById("topScore").innerText = scores[topUser];
+    }
+});
+
+function startGame() {
+    window.location.href = "game.html";
+}

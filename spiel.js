@@ -1,89 +1,85 @@
-const progressBar = document.getElementById("progressBar");
-const questionElement = document.getElementById("question");
-const answersElement = document.getElementById("answers");
-const historyElement = document.getElementById("history");
-const endGameButton = document.getElementById("endGame");
-
-let timer, timeLeft = 60;
-let range = 5;
 let score = 0;
-let history = [];
-let correctAnswer;
+let timer = 60;
+let countdown = 5;
+let interval;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const timerElement = document.getElementById("timer");
+
+    const countdownInterval = setInterval(() => {
+        timerElement.innerText = `Spiel startet in ${countdown--} Sekunden...`;
+        if (countdown < 0) {
+            clearInterval(countdownInterval);
+            startGame();
+        }
+    }, 1000);
+});
 
 function startGame() {
-    timer = setInterval(() => {
-        timeLeft--;
-        progressBar.style.width = `${(60 - timeLeft) * 100 / 60}%`;
-        if (timeLeft <= 0) endGame();
+    interval = setInterval(() => {
+        timer--;
+        if (timer <= 0) {
+            endGame();
+        }
     }, 1000);
 
-    generateQuestion();
+    nextQuestion();
 }
 
-function generateQuestion() {
-    const num1 = Math.floor(Math.random() * (range + 1));
-    const num2 = Math.floor(Math.random() * (range + 1));
-    const isAddition = Math.random() < 0.5;
-    correctAnswer = isAddition ? num1 + num2 : num1 - num2;
+function nextQuestion() {
+    const num1 = getRandomNumber(10, 20 + score * 2);
+    const num2 = getRandomNumber(10, 20 + score * 2);
+    const isAddition = Math.random() > 0.5;
+    const correctAnswer = isAddition ? num1 + num2 : num1 - num2;
 
-    questionElement.textContent = `${num1} ${isAddition ? '+' : '-'} ${num2}`;
-    generateAnswers();
-}
-
-function generateAnswers() {
-    answersElement.innerHTML = '';
-    const correctIndex = Math.floor(Math.random() * 6);
-    for (let i = 0; i < 6; i++) {
-        const answer = document.createElement("button");
-        if (i === correctIndex) {
-            answer.textContent = correctAnswer;
-        } else {
-            answer.textContent = Math.floor(Math.random() * (range * 2 + 1)) - range;
-        }
-        answer.addEventListener("click", () => checkAnswer(parseInt(answer.textContent)));
-        answersElement.appendChild(answer);
-
-        if (i === 2) answersElement.appendChild(document.createElement("br"));
-    }
-}
-
-function checkAnswer(selectedAnswer) {
-    const entry = `${questionElement.textContent} = ${selectedAnswer}`;
-    if (selectedAnswer === correctAnswer) {
-        score++;
-        range++;
-        history.push(`${entry} ✓`);
-        generateQuestion();
-    } else {
-        history.push(`${entry} ✗`);
-        endGame();
-    }
-    updateHistory();
-}
-
-function updateHistory() {
-    historyElement.innerHTML = history.map(item => `<p>${item}</p>`).join('');
-}
-
-function endGame() {
-    clearInterval(timer);
-    questionElement.textContent = 'Spiel beendet!';
-    answersElement.innerHTML = '';
-    endGameButton.style.display = 'block';
-
-    const users = JSON.parse(localStorage.getItem("users")) || {};
-    const currentUser = localStorage.getItem("currentUser");
-    const userScore = users[currentUser]?.score || 0;
-
-    if (score > userScore) {
-        users[currentUser].score = score;
-        localStorage.setItem("users", JSON.stringify(users));
-        historyElement.innerHTML += `<p>Neuer Highscore!</p>`;
+    const answers = [correctAnswer];
+    while (answers.length < 3) {
+        const wrongAnswer = getRandomNumber(correctAnswer - 10, correctAnswer + 10);
+        if (!answers.includes(wrongAnswer)) answers.push(wrongAnswer);
     }
 
-    endGameButton.addEventListener("click", () => {
-        window.location.href = "hauptseite.html";
+    shuffleArray(answers);
+
+    document.getElementById("timer").innerText = `${num1} ${isAddition ? "+" : "-"} ${num2} = ?`;
+    const answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+
+    answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer;
+        button.onclick = () => {
+            if (answer === correctAnswer) {
+                score++;
+                nextQuestion();
+            } else {
+                endGame();
+            }
+        };
+        answersDiv.appendChild(button);
     });
 }
 
-startGame();
+function endGame() {
+    clearInterval(interval);
+    alert(`Spiel vorbei! Dein Score: ${score}`);
+    saveScore();
+    window.location.href = "main.html";
+}
+
+function saveScore() {
+    const currentUser = localStorage.getItem("currentUser");
+    const scores = JSON.parse(localStorage.getItem("scores")) || {};
+    scores[currentUser] = Math.max(score, scores[currentUser] || 0);
+    localStorage.setItem("scores", JSON.stringify(scores));
+}
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}

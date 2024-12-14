@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spiel Webseiten</title>
+    <title>Anmelden</title>
     <style>
         body {
             margin: 0;
@@ -12,45 +12,56 @@
             width: 400px;
             margin: auto;
             border: 2px solid black;
-            box-shadow: 0 0 10px gray;
+            box-shadow: 0 0 15px gray;
             height: 100vh;
             overflow: hidden;
+            border-radius: 10px;
+            background-color: #f2f2f2;
         }
-        header {
-            text-align: center;
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
+
         .container {
-            padding: 10px;
             text-align: center;
+            padding: 20px;
+            margin-top: 100px;
         }
-        .form-field {
+
+        header {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
             margin: 10px 0;
-            width: 90%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
         }
+
         .button {
-            padding: 10px 20px;
+            width: 84%;
+            padding: 10px;
             background-color: black;
             color: white;
             border: none;
-            cursor: pointer;
+            border-radius: 8px;
             font-size: 1em;
+            cursor: pointer;
         }
+
         .button:hover {
             background-color: gray;
         }
     </style>
 </head>
 <body>
-
-<!-- index.html -->
-<div class="container">
-    <header>Anmeldung</header>
-    <input id="username" type="text" class="form-field" placeholder="Benutzername">
-    <input id="password" type="password" class="form-field" placeholder="Passwort">
-    <button id="loginBtn" class="button">Anmelden</button>
-</div>
-<script src="index.js"></script>
+    <div class="container">
+        <header>Anmelden</header>
+        <input type="text" id="username" placeholder="Benutzername"><br>
+        <input type="password" id="password" placeholder="Passwort"><br>
+        <button id="loginBtn" class="button">Anmelden</button>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>

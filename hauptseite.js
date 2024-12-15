@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+function changeUser() {
+    // Umleitung zur Anmeldeseite (index.html)
+    window.location.href = "index.html";
+}
+
 function startGame() {
     window.location.href = "spiel.html";
 }

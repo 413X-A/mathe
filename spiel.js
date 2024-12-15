@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const timerElement = document.getElementById("timer");
 
     const countdownInterval = setInterval(() => {
-        timerElement.innerText = `Spiel startet in ${countdown--} Sekunden...`;
+        timerElement.innerText = `${countdown--}`;
         if (countdown < 0) {
             clearInterval(countdownInterval);
             startGame();

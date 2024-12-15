@@ -83,7 +83,7 @@ function endGame() {
     finalScoreDiv.innerText = `Spiel vorbei! Dein Score: ${score}`;
     finalScoreDiv.style.display = "block";
 
-    const answersHide = document.getElementById("answer");
+    const answersHide = document.getElementById("answers");
     answersHide.style.display = "none";
 
     // Button für Spiel beenden anzeigen
